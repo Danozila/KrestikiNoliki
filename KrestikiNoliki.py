@@ -48,16 +48,23 @@ def checkWin(field):
     if field[0][0] == field[1][1] and field[1][1] == field[2][2] and field[0][0] != " ":
         winner = field[0][0]
         for j in range(3):
-            field[i][i] = field[i][i].upper()
+            field[j][j] = field[j][j].upper()
         return winner
     if field[0][2] == field[1][1] and field[1][1] == field[2][0] and field[0][2] != " ":
         winner = field[0][2]
         for j in range(3):
-            field[i][2 - i] = field[i][2 - i].upper()
+            field[j][2 - j] = field[j][2 - j].upper()
         return winner
     return None
-field = [["x", "o", " "],
-         ["o", "o", "x"],
-         ["o", "o", " "]]
-checkWin(field)
-showField(field)
+field = [[" "] * 3 for i in range(3)]
+winner = None
+player = 1
+while True:
+    showField(field)
+    if winner != None:
+        print("Победил игрок: " + winner)
+        break
+    makeMove(field, player)
+    player = player % 2 + 1
+    winner = checkWin(field)
+
