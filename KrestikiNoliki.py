@@ -33,9 +33,30 @@ def makeMove(field, player):
         print("Ход сделан")
         field[x-1][y-1] = sym
         break
-
+def checkWin(field):
+    for i in range(3):
+        if field[i][0] == field[i][1] and field[i][1] == field[i][2] and field[i][0] != " ":
+            winner = field[i][0]
+            for j in range(3):
+                field[i][j] = field[i][j].upper()
+            return winner
+        if field[0][i] == field[1][i] and field[1][i] == field[2][i] and field[0][i] != " ":
+            winner = field[0][i]
+            for j in range(3):
+                field[j][i] = field[j][i].upper()
+            return winner
+    if field[0][0] == field[1][1] and field[1][1] == field[2][2] and field[0][0] != " ":
+        winner = field[0][0]
+        for j in range(3):
+            field[i][i] = field[i][i].upper()
+        return winner
+    if field[0][2] == field[1][1] and field[1][1] == field[2][0] and field[0][2] != " ":
+        winner = field[0][2]
+        for j in range(3):
+            field[i][2 - i] = field[i][2 - i].upper()
+        return winner
 field = [["x", "o", " "],
-         ["x", " ", "o"],
-         ["o", "x", " "]]
-makeMove(field, 2)
+         ["o", "o", "x"],
+         ["o", "o", " "]]
+checkWin(field)
 showField(field)
