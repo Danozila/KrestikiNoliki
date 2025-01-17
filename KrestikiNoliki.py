@@ -55,6 +55,7 @@ def checkWin(field):
         for j in range(3):
             field[i][2 - i] = field[i][2 - i].upper()
         return winner
+    return None
 field = [["x", "o", " "],
          ["o", "o", "x"],
          ["o", "o", " "]]
